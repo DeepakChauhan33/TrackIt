@@ -77,7 +77,7 @@ const addTask = () => {
               <div class="flex items-start items-center gap-x-3 ">
                 <!-- Checkbox -->
                 <div class="mt-1">
-                  <input type="checkbox" class="border-1 h-4 w-4" />
+                  <input class="taskCheckbox" type="checkbox" class="border-1 h-4 w-4" />
                 </div>
 
                 <!-- Task -->
@@ -97,7 +97,7 @@ const addTask = () => {
 
                 <!-- Delete & Edit Icon -->
                 <ul class="flex items-center gap-x-2">
-                  <li title="Delete task">
+                  <li title="Delete task" class="deleteBtn">
                     <i class="fa-solid fa-trash text-xl font-light text-red-400 hover:text-red-500 cursor-pointer"></i>
                   </li>
 
@@ -111,6 +111,13 @@ const addTask = () => {
   `
 
 
+  const taskCheckbox = task.querySelector(".taskCheckbox");
+  taskCheckbox.addEventListener("change", function () {
+    if (this.checked) {
+      task.querySelector("p").classList.add("line-through", "text-gray-500");
+    } else {
+      task.querySelector("p").classList.remove("line-through", "text-gray-500");
+    } });
 
 
   isEmpty = false;
@@ -129,8 +136,19 @@ const addTask = () => {
     const val = e.target.closest(".editBtn");
     if (!val) return;
 
-
+      const taskText = task.querySelector("p");
+      const newTaskText = prompt("Edit your task:", taskText.innerText);
+      if (newTaskText !== null && newTaskText.trim() !== "") {
+        taskText.innerText = newTaskText.trim();
+      }else {
+        alert("Task cannot be empty!");
+      }
   })
+
+
+
+  // Enent Deligation 
+// Tommorow first learn event deligation then implement delete functionality using event deligation "dltBtn"
 
 
 };
