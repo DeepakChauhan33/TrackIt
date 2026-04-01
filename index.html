@@ -16,97 +16,46 @@
   </head>
 
   <body class="bg-white">
-    <section
-      class="bg-black rounded-b-[18px] outline-none drop-shadow-lg text-white pt-8 py-5 px-4"
-    >
-      <!-- Time Display -->
-      <div class="timeCant flex flex-col gap-y-3">
-        <span class="dayVal text-xl font-bold">
-          <strong>Day, Date Month</strong>
-        </span>
+    <!-- HEADER -->
 
-        <p class="timeVal text-xl font-bold">Time</p>
-      </div>
-
-      <div
-        class="addTaskCant hidden flex flex-col py-3 mt-2 flex justify-around items-center"
-      >
-        <div class="flex w-full justify-around p-1">
-          <!-- Search Bar -->
-          <input
-            class="inputTask w-[70%] py-3 px-2 border outline-none focus:border-green-300 rounded-md"
-            type="text"
-            placeholder="Add Task"
-          />
-
-          <select
-            name=""
-            id=""
-            class="border rounded-md outline-none text-black bg-green-400"
-          >
-            <option value="">Daily</option>
-            <option value="">Work</option>
-            <option value="">Education</option>
-            <option value="">GYM</option>
-          </select>
-        </div>
-
-        <div class="w-full p-1">
-          <button
-            class="addBtn h-12 px-3 w-full rounded-xl text-[12px] cursor-pointer border border-red-400 bg-red-400 outline-none"
-          >
-            ADD
-          </button>
+    <header class="p-2 space-y-5">
+      <!--Screen top heading -->
+      <div>
+        <!-- Calendar Icon and Text -->
+        <div>
+          <i class="fa-regular fa-calendar"></i>
+          <span class="text-xl font-black">Today's Schedule</span>
         </div>
       </div>
 
-      <div class="addIconCant text-center mt-3">
-        <i title="Add task" class="taskAddIcon fa-solid fa-circle-plus text-center text-5xl"></i>
-      </div>
-    </section>
+      <div class="flex items-center justify-between">
+        <!-- Date Div -->
 
-    <main class="px-3">
-      <section class="flex items-center my-3">
-        <nav class="w-full p-3 flex justify-center">
-          <ul class="flex justify-around text-sm items-center space-x-2">
-            <li class="bg-gray-400 px-3 py-[4px] rounded-2xl">All</li>
-            <li class="bg-gray-400 px-3 py-[4px] rounded-2xl">Completed</li>
-            <li class="bg-gray-400 px-3 py-[4px] rounded-2xl">Pending</li>
-            <li class="bg-gray-400 px-3 py-[4px] rounded-2xl">Important</li>
-          </ul>
-        </nav>
-      </section>
-
-      <section>
-        <div class="h-auto">
-          <ul class="taskQueue min-h-90 max-h-auto p-1 space-y-4 py-4">
-            <p class="QueueText text-2xl font-bold text-center mt-12"></p>
-            <!-- Task comes Here -->
-
-            <!-- Parent Div -->
-            
-          </ul>
+        <div>
+          <span class="font-black text-4xl">Friday</span>
+          <p class="text-2xl font-bold">01, April</p>
         </div>
-      </section>
+
+        <!-- Add task div -->
+        <div class="border text-center mr-10">+</div>
+      </div>
+
+      <div class="flex">
+        <input type="text" placeholder="Add task" class="w-full border" />
+        <select name="" id="">
+          <option value=""></option>
+          <option value=""></option>
+          <option value=""></option>
+          <option value=""></option>
+        </select>
+      </div>
+    </header>
+
+    <main>
+      <section></section>
     </main>
 
-    <footer class="w-full py-3 text-center  ">
-      <p>This application is created bt TechDeepak</p>
-    </footer>
-
-    <!-- AXIOS API SCRIPT-->
-    <script src="https://cdn.jsdelivr.net/npm/axios/dist/axios.min.js"></script>
-
+    <footer></footer>
     <script src="script.js"></script>
   </body>
 </html>
-
-
-
-
-
-
-
-<!-- For Styling -->
-<!-- Lorem ipsum dolor sit amet consectetur adipisicing elit. Nulla, quasi. -->
-<!-- Lorem, ipsum dolor sit amet consectetur adipisicing elit. Harum, modi cum commodi quidem culpa aliquid. -->
