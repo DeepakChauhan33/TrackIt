@@ -1,57 +1,57 @@
 <!doctype html>
 <html lang="en">
-  <head>
-    <meta charset="UTF-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>Webpage Title</title>
 
-    <!-- TAILWIND CSS -->
-    <script src="https://cdn.jsdelivr.net/npm/@tailwindcss/browser@4"></script>
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Webpage Title</title>
 
-    <!-- FONTAWESOME -->
-    <link
-      rel="stylesheet"
-      href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/7.0.1/css/all.min.css"
-    />
+  <!-- TAILWIND CSS -->
+  <script src="https://cdn.jsdelivr.net/npm/@tailwindcss/browser@4"></script>
 
-    <script src="https://cdn.jsdelivr.net/npm/gsap@3"></script>
+  <!-- FONTAWESOME -->
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/7.0.1/css/all.min.css" />
 
-  </head>
+  <script src="https://cdn.jsdelivr.net/npm/gsap@3"></script>
 
-  <body class="bg-linear-to-b from-[#ECF0F3] to-[#FFFFFF]  ">
-    <!-- HEADER -->
+</head>
 
-    <header class=" space-y-5  pb-3   ">
-      <!--Screen top heading -->
-      <div class="bg-gray-300/60 shadow-b-xl p-2 ">
-        <!-- Calendar Icon and Text -->
-        <div>
-          <i class="fa-regular fa-calendar"></i>
-          <span class="text-md font-bold">Today's Schedule</span>
-        </div>
+<body class="bg-linear-to-b from-[#ECF0F3] to-[#FFFFFF] scroll-smooth ">
+  <!-- HEADER -->
+
+  <header class=" space-y-3  pb-3  ">
+    <!--Screen top heading -->
+    <div class="bg-gray-300/60 shadow-b-xl p-2 ">
+      <!-- Calendar Icon and Text -->
+      <div>
+        <i class="fa-regular fa-calendar"></i>
+        <span class="text-md font-bold">Today's Schedule</span>
+      </div>
+    </div>
+
+    <!-- Date and Add Btn -->
+    <div class=" flex items-center justify-between p-2">
+      <!-- Date -->
+
+      <div>
+        <span class="font-black text-4xl">Friday</span>
+        <p class="text-2xl font-bold">01, April</p>
       </div>
 
-      <!-- Date and Add Btn -->
-      <div class=" flex items-center justify-between p-2">
-        <!-- Date -->
-
-        <div>
-          <span class="font-black text-4xl">Friday</span>
-          <p class="text-2xl font-bold">01, April</p>
-        </div>
-
-        <!-- Add task Btn -->
-        <div class="addBtn border text-center mr-5  p-3 rounded-md">
-          <i class="fa-solid fa-plus text-2xl font-black"></i>
-        </div>
+      <!-- Add task Btn -->
+      <div class="addBtn border text-center mr-5  p-3 rounded-md">
+        <i class="fa-solid fa-plus text-2xl font-black"></i>
       </div>
 
-      <div class="inputTaskBox hidden space-y-3 p-2">
-        <div class="flex items-center p-1 space-x-3">
-        <input type="text" placeholder="What's the next big thing" class="inputTask w-full h-15 rounded-4xl p-3 bg-gray-200/60 border-2 border-transparent focus:bg-white focus:border-blue-500" />
+    </div>
 
-      
-        <select name="" id="task-category"  class="Category  bg-blue-200 py-2 px-1">
+    <div class="inputTaskBox hidden space-y-3 p-2">
+      <div class="flex items-center p-1 space-x-3">
+        <input type="text" placeholder="What's the next big thing"
+          class="inputTask w-full h-15  rounded-4xl p-3 bg-gray-200/60 border-2 border-transparent focus:bg-white focus:border-blue-500" />
+
+
+        <select name="" id="task-category" class="Category  bg-blue-200 py-2 px-1">
           <option value="task">Task</option>
           <option value="gym">Gym</option>
           <option value="study">Study</option>
@@ -62,21 +62,48 @@
       <button class="taskAddBtn  w-full border rounded-md py-2">
         Add
       </button>
-      </div>
-    </header>
-    
-
-    <main class="p-2.5  min-h-80">
-
-      <section class="border">
-          <p>You have 3 task</p>
-      </section>
+    </div>
+  </header>
 
 
-    
-    </main>
+  <main class="p-2.5  min-h-80">
 
-    <footer class="bg-red-500"></footer>
-    <script src="script.js"></script>
-  </body>
+
+    <section class=" flex flex-wrap gap-2 mb-4" id="filterSection">
+
+      <button class="filterBtn px-3 py-1 border rounded bg-gray-100" data-filter="all">
+        All
+      </button>
+
+      <button class="filterBtn px-3 py-1 border rounded" data-filter="work">
+        Work
+      </button>
+
+      <button class="filterBtn px-3 py-1 border rounded" data-filter="gym">
+        Gym
+      </button>
+
+      <button class="filterBtn px-3 py-1 border rounded" data-filter="study">
+        Study
+      </button>
+
+    </section>
+
+    <section>
+      <ul class="taskCant space-y-4 ">
+        <p class="text-center ">No task here!</p>
+
+
+      </ul>
+
+
+    </section>
+
+
+  </main>
+
+  <footer class="bg-red-500"></footer>
+  <script src="script.js"></script>
+</body>
+
 </html>
