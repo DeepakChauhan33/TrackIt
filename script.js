@@ -148,17 +148,36 @@ filterButtons.forEach(btn => {
 
 
 
-filterButtons.forEach(btn => {
-    btn.addEventListener("click", () => {
 
-        // remove active from all
-        filterButtons.forEach(b => b.classList.remove("bg-blue-500", "text-white"));
+/** 
+ * 
+ * Have to understand this how styling add to the buttons 
+ * 
+ ***/
 
-        // add active to clicked
-        btn.classList.add("bg-blue-500", "text-white");
 
-    });
+
+filterSection.addEventListener("click", (e) => {
+
+    const btn = e.target.closet(".filterBtn");
+
+    // ignore clicks that are not buttons
+    if (!btn.classList.contains("filterBtn")) return;
+
+    // 👉 get filter value
+    const filterValue = btn.dataset.filter;
+
+    console.log(filterValue);
+
+    // 👉 remove active from all
+    const allButtons = filterSection.querySelectorAll(".filterBtn");
+    allButtons.forEach(b => b.classList.remove("bg-blue-500", "text-white"));
+
+    // 👉 add active to clicked
+    btn.classList.add("bg-blue-500", "text-white");
+
 });
 
-
 toggleFilterSection();
+
+
