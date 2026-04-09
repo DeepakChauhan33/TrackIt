@@ -51,7 +51,7 @@
           class="inputTask w-full h-15  rounded-4xl p-3 bg-gray-200/60 border-2 border-transparent focus:bg-white focus:border-blue-500" />
 
 
-        <select name="" id="task-category" class="Category  bg-blue-200 py-2 px-1">
+        <select name="" id="task-category" class=" bg-blue-200 py-2 px-1">
           <option value="task">Task</option>
           <option value="gym">Gym</option>
           <option value="study">Study</option>
@@ -66,37 +66,44 @@
   </header>
 
 
-  <main class="p-2.5  min-h-80">
+  <main class="p-2.5  min-h-80 flex ">
 
 
-    <section class=" flex flex-wrap gap-2 mb-4" id="filterSection">
-
-      <button class="filterBtn px-3 py-1 border rounded bg-gray-100" data-filter="all">
-        All
-      </button>
-
-      <button class="filterBtn px-3 py-1 border rounded" data-filter="work">
-        Work
-      </button>
-
-      <button class="filterBtn px-3 py-1 border rounded" data-filter="gym">
-        Gym
-      </button>
-
-      <button class="filterBtn px-3 py-1 border rounded" data-filter="study">
-        Study
-      </button>
-
+    <section class="hidden lg:flex w-full lg:w-1/2 border">
+      456
     </section>
 
-    <section>
-      <ul class="taskCant space-y-4 ">
-        <p class="text-center ">No task here!</p>
+
+    <section class="w-full lg:w-[60%] p-1 border">
+      <div class=" flex flex-wrap gap-2 mb-4" id="filterSection">
+
+        <button class="filterBtn px-3 py-1 border rounded bg-gray-100" data-filter="all">
+          All
+        </button>
+
+        <button class="filterBtn px-3 py-1 border rounded" data-filter="work">
+          Work
+        </button>
+
+        <button class="filterBtn px-3 py-1 border rounded" data-filter="gym">
+          Gym
+        </button>
+
+        <button class="filterBtn px-3 py-1 border rounded" data-filter="study">
+          Study
+        </button>
+
+      </div>
+
+      <div>
+        <ul class="taskCant space-y-4 ">
+          <p class="text-center ">No task here!</p>
 
 
-      </ul>
+        </ul>
 
 
+      </div>
     </section>
 
 

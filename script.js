@@ -131,53 +131,55 @@ function renderTask(taskArray) {
 
 const filterButtons = document.querySelectorAll(".filterBtn");
 
-filterButtons.forEach(btn => {
-    btn.addEventListener("click", () => {
 
-        const filterValue = btn.dataset.filter;
+filterSection.addEventListener('click', function (e) {
+    if (e.target.tagName !== "BUTTON") return;
 
-        if (filterValue === "all") {
-            renderTask(taskArray);
-        } else {
-            const filteredTasks = taskArray.filter(task => task.category === filterValue);
-            renderTask(filteredTasks);
-        }
+    const filterValue = e.target.dataset.filter;
 
-    });
+    if (filterValue === 'all') {
+        renderTask(taskArray);
+    } else {
+        const filterData = taskArray.filter(task => task.category === filterValue);
+        renderTask(filterData);
+    }
 });
 
 
 
 
-/** 
- * 
- * Have to understand this how styling add to the buttons 
- * 
- ***/
 
 
 
 filterSection.addEventListener("click", (e) => {
 
-    const btn = e.target.closet(".filterBtn");
+    const btn = e.target.closest(".filterBtn");
 
-    // ignore clicks that are not buttons
     if (!btn.classList.contains("filterBtn")) return;
 
-    // 👉 get filter value
     const filterValue = btn.dataset.filter;
 
-    console.log(filterValue);
-
-    // 👉 remove active from all
     const allButtons = filterSection.querySelectorAll(".filterBtn");
-    allButtons.forEach(b => b.classList.remove("bg-blue-500", "text-white"));
+    allButtons.forEach(b => b.classList.remove("bg-gray-6  00", "text-white"));
 
-    // 👉 add active to clicked
-    btn.classList.add("bg-blue-500", "text-white");
+    btn.classList.add("bg-gray-600", "text-white");
 
 });
 
+
+
+
+
+
+
 toggleFilterSection();
+
+
+
+
+
+
+
+
 
 
