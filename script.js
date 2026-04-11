@@ -38,9 +38,6 @@ function updateTime() {
 }
 
 
-setInterval
-
-
 
 
 
@@ -79,7 +76,6 @@ taskAddBtn.addEventListener('click', () => {
 
 
 
-
 function addTask(inputTask, category) {
 
     if (inputTask.value.trim() === "") {
@@ -89,7 +85,7 @@ function addTask(inputTask, category) {
 
     } else {
 
-        // 🔥 ADD MODE
+
         const taskObj = {
             id: Date.now(),
             task: inputTask.value,
@@ -105,6 +101,7 @@ function addTask(inputTask, category) {
         };
 
         taskArray.push(taskObj);
+        saveToLocalStorage();
     }
 
     renderTask(taskArray);
@@ -142,7 +139,11 @@ function renderTask(taskArray) {
 
           <!-- CheckBox & Task -->
           <div class="flex justify-between items-start gap-2">
-            <input type="checkbox" data-id="${task.id}" class=" taskCheckbox border h-5 w-5 mt-1.5  ">
+            <input type="checkbox" 
+            data-id="${task.id}" 
+            class="taskCheckbox h-5 w-5 mt-1.5"
+            ${task.completed ? "checked" : ""}
+            >
             <p class="w-[100%] max-h-25 overflow-y-auto scroll-smooth border p-2 rounded-sm transition-all duration-200  ${task.completed ? "line-through text-gray-400" : ""}">
               ${task.task}
             </p>
@@ -260,6 +261,7 @@ function startEdit(id) {
     task.task = newTask;
 
     renderTask(taskArray);
+    saveToLocalStorage();
 }
 
 
@@ -283,6 +285,7 @@ function deleteTask(id) {
 
     taskArray.length = 0;
     taskArray.push(...updtTask);
+    saveToLocalStorage();
 
 
     renderTask(updtTask);
@@ -312,7 +315,25 @@ filterSection.addEventListener("click", (e) => {
 
 
 
+function saveToLocalStorage() {
+    localStorage.setItem("tasks", JSON.stringify(taskArray));
+}
 
+
+
+function loadFromLocalStorage() {
+    const data = localStorage.getItem("tasks");
+
+    if (data) {
+        const parsedData = JSON.parse(data);
+        taskArray.push(...parsedData);
+    }
+}
+
+
+
+loadFromLocalStorage();
+renderTask(taskArray);
 toggleFilterSection();
 
 updateTime();
