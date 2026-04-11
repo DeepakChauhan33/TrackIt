@@ -16,6 +16,8 @@ const taskAddBtn = document.querySelector('.taskAddBtn');
 const category = document.querySelector('#task-category');
 const taskCant = document.querySelector('.taskCant');
 const filterSection = document.querySelector('#filterSection');
+const totalTask = document.querySelector('#totalTask');
+
 
 
 
@@ -118,18 +120,30 @@ function addTask(inputTask, category) {
 // Function for rendering task in UI
 
 function renderTask(taskArray) {
+
+    if (taskArray.length === 0) {
+        taskCant.innerHTML = `
+        <div class="flex flex-col items-center justify-center text-center text-gray-400 mt-20">
+            <i class="fa-regular fa-circle-check text-5xl mb-3 text-blue-400"></i>
+            <p class="text-lg font-semibold">No tasks yet</p>
+            <p class="text-sm">Add your first task 🚀</p>
+        </div>
+    `;
+        return;
+    }
+
     taskCant.innerHTML = "";
 
     taskArray.forEach(task => {
         const li = document.createElement('li');
 
         li.innerHTML = `
-            <div class=" border flex flex-col justify-between   rounded-md p-2 gap-y-2">
+            <div class="  flex flex-col justify-between rounded-xl shadow-md p-3 gap-y-2 bg-white">
 
           <!-- CheckBox & Task -->
           <div class="flex justify-between items-start gap-2">
-            <input type="checkbox" class="border h-5 w-5 mt-1.5  ">
-            <p class="w-[100%] max-h-25 overflow-y-auto scroll-smooth border p-2 rounded-sm">
+            <input type="checkbox" data-id="${task.id}" class=" taskCheckbox border h-5 w-5 mt-1.5  ">
+            <p class="w-[100%] max-h-25 overflow-y-auto scroll-smooth border p-2 rounded-sm transition-all duration-200  ${task.completed ? "line-through text-gray-400" : ""}">
               ${task.task}
             </p>
           </div>
@@ -146,7 +160,7 @@ function renderTask(taskArray) {
 
               <button title="delete"
                 data-id="${task.id}"
-                class="deleteBtn hover:bg-gray-200 text-gray-500/90 border-0 rounded-md p-1 transition-transform hover:scale-108 duration-100 ease-in-out hover:text-red-500/80">
+                class="deleteBtn hover:bg-gray-200 text-gray-500/90 border-0 rounded-md p-1 transition-transform hover:scale-108 duration-100 ease-in-out hover:text-red-500/80 text-red-500/80 lg:text-red-400/80">
                 <i class="fa-solid fa-trash"></i>
               </button>
             </div>
@@ -162,6 +176,8 @@ function renderTask(taskArray) {
             opacity: 0,
             duration: 0.3
         });
+
+        totalTask.innerText = taskArray.length;
 
 
     })
@@ -183,6 +199,31 @@ filterSection.addEventListener('click', function (e) {
         renderTask(filterData);
     }
 });
+
+
+// CheckBox 
+
+taskCant.addEventListener('change', (e) => {
+
+    const checkbox = e.target.closest('.taskCheckbox');
+    if (!checkbox) return;
+
+    const id = Number(checkbox.dataset.id);
+
+    toggleComplete(id);
+});
+
+
+function toggleComplete(id) {
+
+    const task = taskArray.find(t => t.id === id);
+
+    task.completed = !task.completed;
+
+    renderTask(taskArray);
+}
+
+
 
 
 // Edit btn 
@@ -247,6 +288,8 @@ function deleteTask(id) {
     renderTask(updtTask);
     console.log(452);
     toggleFilterSection();
+    totalTask.innerText = taskArray.length;
+
 }
 
 

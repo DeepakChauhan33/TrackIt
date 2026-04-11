@@ -4,59 +4,56 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Webpage Title</title>
+  <title>Task Manager</title>
 
-  <!-- TAILWIND CSS -->
+  <!-- Tailwind -->
   <script src="https://cdn.jsdelivr.net/npm/@tailwindcss/browser@4"></script>
 
-  <!-- FONTAWESOME -->
+  <!-- FontAwesome -->
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/7.0.1/css/all.min.css" />
 
+  <!-- GSAP -->
   <script src="https://cdn.jsdelivr.net/npm/gsap@3"></script>
-
 </head>
 
-<body class="bg-linear-to-b from-[#ECF0F3] to-[#FFFFFF] scroll-smooth ">
+<body class="bg-linear-to-t from-slate-100 to-neutral-100 min-h-screen flex flex-col">
+
   <!-- HEADER -->
+  <header class="space-y-3 pb-3">
 
-  <header class=" space-y-3  pb-3  ">
-    <!--Screen top heading -->
-    <div class="bg-gray-300/40 shadow-b-xl p-2">
-      <!-- Calendar Icon and Text -->
-      <div>
-        <i class="fa-regular fa-calendar text-blue-500"></i>
-        <span class="text-md font-bold text-blue-600">Today's Schedule</span>
-      </div>
-
+    <!-- Top bar -->
+    <div class="bg-white/60 backdrop-blur shadow-sm p-3">
+      <i class="fa-regular fa-calendar text-blue-500"></i>
+      <span class="text-md font-bold text-blue-600 ml-2">Today's Schedule</span>
     </div>
 
-    <!-- Date and Add Btn -->
-    <div class=" flex items-center justify-between p-2">
-      <!-- Date -->
+    <!-- Date + Add -->
+    <div class="flex items-center justify-between px-3 md:px-5  mt-5 ">
 
-      <div>
-        <span id="weekDay" class="font-black text-4xl">week</span>
-        <div class="text-2xl font-bold">
-          <span id="day" class="text-gray-800">day</span>
-          <span id="month" class="text-gray-800">month</span>
+      <div class="text-start">
+        <span id="weekDay" class="font-black text-4xl lg:text-5xl">Friday</span>
+        <div class="text-3xl md:text-5xl font-bold text-gray-700">
+          <span id="day">10</span>,
+          <span id="month">Apr</span>
         </div>
       </div>
 
-      <!-- Add task Btn -->
-      <div
-        class="addBtn  text-center mr-5  p-3 rounded-md bg-linear-to-br from-sky-200 via-blue-300 to-blue-500 text-white">
-        <i class="fa-solid fa-plus text-2xl font-black"></i>
+      <!-- Add Button -->
+      <div title="Add Task" class="addBtn cursor-pointer shadow-lg hover:scale-105 transition duration-200
+      p-3 rounded-xl bg-gradient-to-br from-sky-400 via-blue-400 to-blue-600 text-white">
+        <i class="fa-solid fa-plus text-2xl"></i>
       </div>
 
     </div>
 
-    <div class="inputTaskBox hidden space-y-3 p-2">
-      <div class="flex items-center p-1 space-x-3">
-        <input type="text" autoFocus placeholder="What's the next big thing"
-          class="inputTask w-full h-15  rounded-4xl p-3 bg-gray-200/60 border-2 border-transparent focus:bg-white focus:border-yellow-500 " />
+    <!-- Input Box -->
+    <div class="inputTaskBox hidden space-y-3 px-3 mt-4 md:mt-5 lg:mt-6 ">
 
+      <div class="flex items-center gap-3 md:gap-4 lg:gap-5">
+        <input type="text" placeholder="What's the next big thing" autofocus class="inputTask w-full h-14 md:h-15 lg:h-16 rounded-full px-4 bg-white shadow-md border border-gray-200 
+          focus:outline-none focus:ring-2 focus:ring-blue-400 transition" />
 
-        <select name="" id="task-category" class=" bg-gray-300 py-2 px-3 rounded-3xl">
+        <select id="task-category" class="bg-gray-200 px-3 py-2 rounded-full">
           <option value="task">Task</option>
           <option value="gym">Gym</option>
           <option value="study">Study</option>
@@ -64,67 +61,81 @@
         </select>
       </div>
 
-      <button class="taskAddBtn  w-full border rounded-md py-2">
-        Add
+      <button
+        class="taskAddBtn w-full rounded-lg py-2 md:py-3 lg:py-4 bg-blue-500 text-white hover:bg-blue-600 transition">
+        Add Task
       </button>
     </div>
+
   </header>
 
+  <!-- MAIN -->
+  <main class="flex-1 p-3 flex flex-col lg:flex-row gap-4">
 
-  <main class="p-2.5 flex ">
 
-
-    <section class="hidden lg:flex w-full lg:w-1/2 ">
-      456
+    <section class="hidden lg:flex w-full lg:w-1/2  rounded-xl p-4">
+      <p class="text-gray-400">Total task : <span id="totalTask">0</span></p>
     </section>
 
+    <!-- Right -->
+    <section class="w-full lg:w-1/2">
 
-    <section class="w-full lg:w-[60%] p-1 ">
+      <!-- Filters -->
+      <div id="filterSection" class="flex flex-wrap gap-2 mb-4">
 
+        <button class="filterBtn px-4 py-1.5 rounded-full border text-sm  hover:bg-blue-500 hover:text-white transition"
+          data-filter="all">All</button>
 
-      <!-- FILTER BUTTON -->
-      <div class=" flex flex-wrap gap-2 mb-4" id="filterSection">
+        <button class="filterBtn px-4 py-1.5 rounded-full border text-sm  hover:bg-blue-500 hover:text-white transition"
+          data-filter="task">Task</button>
 
-        <button class="filterBtn px-3 py-1  rounded-2xl " data-filter="all">
-          All
-        </button>
+        <button class="filterBtn px-4 py-1.5 rounded-full border text-sm  hover:bg-blue-500 hover:text-white transition"
+          data-filter="gym">Gym</button>
 
-        <button class="filterBtn px-3 py-1  rounded-2xl" data-filter="work">
-          Work
-        </button>
+        <button class="filterBtn px-4 py-1.5 rounded-full border text-sm  hover:bg-blue-500 hover:text-white transition"
+          data-filter="study">Study</button>
 
-        <button class="filterBtn px-3 py-1  rounded-2xl" data-filter="gym">
-          Gym
-        </button>
-
-        <button class="filterBtn px-3 py-1  rounded-2xl" data-filter="study">
-          Study
-        </button>
+        <button class="filterBtn px-4 py-1.5 rounded-full border text-sm  hover:bg-blue-500 hover:text-white transition"
+          data-filter="call">Call</button>
 
       </div>
 
-      <!-- TASK CONTAINER -->
-      <div class="min-h-[75vh]  ">
-        <ul class="taskCant space-y-4 ">
-          <p class="text-center ">No task here!</p>
+      <!-- Task Container -->
+      <div class="min-h-[65vh]">
+        <ul class="taskCant space-y-4">
 
+          <!-- Empty State -->
+          <div class="flex flex-col items-center justify-center text-center text-gray-400 mt-20 space-y-10">
+            <i class="fa-regular fa-circle-check text-5xl mb-3 text-blue-400"></i>
+            <p class="text-lg font-semibold">No tasks yet</p>
+            <p class="text-sm">Add your first task 🚀</p>
+          </div>
 
-          <!-- Tasks -->
-          <!-- 
-            1
-            2
-            3
-             -->
         </ul>
-
-
       </div>
+
     </section>
+
+
 
 
   </main>
 
-  <footer class="bg-red-500"></footer>
+  <!-- FOOTER -->
+  <footer class="py-4 text-center text-sm text-white border-t bg-black/70 backdrop-blur">
+
+    <p>© 2026 Task Manager • Built by You 🚀</p>
+
+    <div class="flex justify-center gap-4 mt-2 text-lg">
+      <a href="">
+        <i class="fa-brands fa-github hover:text-black cursor-pointer"></i>
+      </a>
+      <i class="fa-brands fa-linkedin hover:text-blue-600 cursor-pointer"></i>
+      <i class="fa-solid fa-envelope hover:text-red-500 cursor-pointer"></i>
+    </div>
+
+  </footer>
+
   <script src="script.js"></script>
 </body>
 
