@@ -80,7 +80,7 @@ function addTask(inputTask, category) {
 
     if (inputTask.value.trim() === "") {
         inputTask.value = "";
-        alert("Task field can't br empty");
+        alert("Task field can't be empty");
         inputTaskBox.style.display = "none";
 
     } else {
@@ -222,6 +222,8 @@ function toggleComplete(id) {
     task.completed = !task.completed;
 
     renderTask(taskArray);
+    saveToLocalStorage();
+
 }
 
 
@@ -265,6 +267,7 @@ function startEdit(id) {
 }
 
 
+// Delete Button
 
 taskCant.addEventListener('click', (e) => {
 
@@ -306,14 +309,14 @@ filterSection.addEventListener("click", (e) => {
     const allButtons = filterSection.querySelectorAll(".filterBtn");
     allButtons.forEach(b => b.classList.remove("bg-blue-500", "text-white"));
 
-    btn.classList.add("bg-blue-500", "text-white");
+    btn.classList.add("bg-blue-500", "text-white"); 
 
 });
 
 
 
 
-
+// Saving task in Local Storage
 
 function saveToLocalStorage() {
     localStorage.setItem("tasks", JSON.stringify(taskArray));
