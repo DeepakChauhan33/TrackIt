@@ -309,7 +309,7 @@ filterSection.addEventListener("click", (e) => {
     const allButtons = filterSection.querySelectorAll(".filterBtn");
     allButtons.forEach(b => b.classList.remove("bg-blue-500", "text-white"));
 
-    btn.classList.add("bg-blue-500", "text-white"); 
+    btn.classList.add("bg-blue-500", "text-white");
 
 });
 
@@ -323,13 +323,14 @@ function saveToLocalStorage() {
 }
 
 
+// Loading Task from Local storage
 
 function loadFromLocalStorage() {
     const data = localStorage.getItem("tasks");
 
     if (data) {
         const parsedData = JSON.parse(data);
-        taskArray.push(...parsedData);
+        taskArray.push(...parsedData.reverse());
     }
 }
 
